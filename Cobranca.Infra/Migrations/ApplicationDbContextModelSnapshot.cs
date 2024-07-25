@@ -4,19 +4,16 @@ using Cobrancas.Infra.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Cobrancas.Migrations
+namespace Cobranca.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240725000446_initial")]
-    partial class initial
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +22,7 @@ namespace Cobrancas.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Cobrancas.Domain.Models.Costumer", b =>
+            modelBuilder.Entity("Cobrancas.Domain.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,6 +35,10 @@ namespace Cobrancas.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdGatewayPayment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -54,7 +55,7 @@ namespace Cobrancas.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Costumers");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Cobrancas.Domain.Models.Subscription", b =>
@@ -71,18 +72,22 @@ namespace Cobrancas.Migrations
                     b.Property<int>("BillingType")
                         .HasColumnType("int");
 
-                    b.Property<int>("CostumerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("FirstPayment")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("IdSubscription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CostumerId");
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -330,30 +335,30 @@ namespace Cobrancas.Migrations
                         {
                             Id = "95433ac4-2fe9-468f-b80d-b05ec3724d1d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eb5b10d9-857c-4bc6-b40f-ded5497a2bbf",
-                            Email = "felipeeduardodealmeida@gmail.com.br",
+                            ConcurrencyStamp = "58d6f667-2e28-4804-8656-a5098adf5699",
+                            Email = "felipeteste@gmail.com.br",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "FELIPEEDUARDODEALMEIDA@GMAIL.COM.BR",
-                            NormalizedUserName = "FELIPEEDUARDODEALMEIDA@GMAIL.COM.BR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOTzAPHBOVKWwpNuEIBjgRBHAP+58suM37dS4Vg7GayMoinUErNjNwsNw1UOC7AUvA==",
+                            NormalizedEmail = "FELIPETESTE@GMAIL.COM.BR",
+                            NormalizedUserName = "FELIPETESTE@GMAIL.COM.BR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC3nIoI4zv4USHmbrKZOg0ussC4Q1pKKNYHkWrOilGJCFjWoQDCoxNzRzRiyHXitIQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "96c85bd6-b147-4805-8ca3-5c58f8ad5f79",
+                            SecurityStamp = "3a76cc4a-bce0-4ecc-b4c3-2974d9e26ec0",
                             TwoFactorEnabled = false,
-                            UserName = "felipeeduardodealmeida@gmail.com.br",
+                            UserName = "felipeteste@gmail.com.br",
                             Name = "Felipe"
                         });
                 });
 
             modelBuilder.Entity("Cobrancas.Domain.Models.Subscription", b =>
                 {
-                    b.HasOne("Cobrancas.Domain.Models.Costumer", "Costumer")
+                    b.HasOne("Cobrancas.Domain.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CostumerId")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Costumer");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

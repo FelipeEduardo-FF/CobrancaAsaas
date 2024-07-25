@@ -4,16 +4,19 @@ using Cobrancas.Infra.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Cobrancas.Migrations
+namespace Cobranca.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725225750_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -335,17 +338,17 @@ namespace Cobrancas.Migrations
                         {
                             Id = "95433ac4-2fe9-468f-b80d-b05ec3724d1d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "af386942-0d22-4932-97ea-ed66d9b840e7",
-                            Email = "felipeeduardodealmeida@gmail.com.br",
+                            ConcurrencyStamp = "58d6f667-2e28-4804-8656-a5098adf5699",
+                            Email = "felipeteste@gmail.com.br",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "FELIPEEDUARDODEALMEIDA@GMAIL.COM.BR",
-                            NormalizedUserName = "FELIPEEDUARDODEALMEIDA@GMAIL.COM.BR",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBJwMQ7XNVfduy64DmOe4tZi7GJX82ce4jqRozPKjzLyKIIzV4nZT6oXRBpv6tPY8A==",
+                            NormalizedEmail = "FELIPETESTE@GMAIL.COM.BR",
+                            NormalizedUserName = "FELIPETESTE@GMAIL.COM.BR",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC3nIoI4zv4USHmbrKZOg0ussC4Q1pKKNYHkWrOilGJCFjWoQDCoxNzRzRiyHXitIQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "13cf2380-0d1a-4448-ae9d-b5e436e15989",
+                            SecurityStamp = "3a76cc4a-bce0-4ecc-b4c3-2974d9e26ec0",
                             TwoFactorEnabled = false,
-                            UserName = "felipeeduardodealmeida@gmail.com.br",
+                            UserName = "felipeteste@gmail.com.br",
                             Name = "Felipe"
                         });
                 });

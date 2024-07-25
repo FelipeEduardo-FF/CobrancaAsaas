@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Cobranca.Application\Cobranca.Application.csproj" />
     <ProjectReference Include="..\Cobranca.Domain\Cobranca.Domain.csproj" />
     <ProjectReference Include="..\Cobranca.Infra\Cobranca.Infra.csproj" />
