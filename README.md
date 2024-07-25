@@ -10,12 +10,6 @@ Este projeto é um teste técnico que inclui autenticação e autorização usan
 - **Criação de Cobranças**: Cria cobranças no Asaas passando os dados do cliente, com prioridade para cobranças recorrentes.
 - **Detecção de Pagamentos**: Detecta quando uma cobrança é paga através de um webhook.
 
-## Pré-requisitos
-
-- .NET 6.0 SDK ou superior
-- Visual Studio 2022 ou superior
-- Conta no Asaas (para integração com a API)
-- Conhecimento básico de Blazor e Entity Framework Core
 
 ## Configuração
 
@@ -26,7 +20,7 @@ Este projeto é um teste técnico que inclui autenticação e autorização usan
 
     ```sh
     dotnet user-secrets init
-    dotnet user-secrets set "Asaas:ApiKey" "SUA_CHAVE_DE_API"
+    dotnet user-secrets set "AsaasAccessToken" "SUA_CHAVE_DE_API"
     ```
 
 2. **Configure a string de conexão do banco de dados**:
