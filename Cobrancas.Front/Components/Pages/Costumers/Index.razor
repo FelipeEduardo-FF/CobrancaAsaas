@@ -1,0 +1,43 @@
+﻿@page "/costumers"
+@using Microsoft.AspNetCore.Authorization
+@inherits CostumerIndexPage
+
+@attribute [Authorize(Roles = "Cliente,Adm")]
+<MudText Typo="Typo.h3">Clientes</MudText>
+
+<MudButton Variant="Variant.Filled"
+           StartIcon="@Icons.Material.Filled.Add"
+           Color="Color.Info"
+           Size="Size.Large"
+           Href="/costumers/create"
+           Class="mt-md-4 mb-4">Novo Cliente</MudButton>
+
+<MudDataGrid Items="@Costumers" Filterable="false" SortMode="@SortMode.Single" Groupable="false">
+    <Columns>
+        <PropertyColumn Property="x => x.Name" Title="Nome" />
+        <PropertyColumn Property="x => x.Document" Title="Documento" />
+        <PropertyColumn Property="x => x.Email" Title="Email" />
+        <PropertyColumn Property="x => x.PhoneNumber" Title="Telefone" />
+        <TemplateColumn>
+            <CellTemplate>
+                <MudStack Row>
+                    <MudFab Size="Size.Small"
+                            Label="Editar"
+                            hidden="@HideButtons"
+                            @onclick="@(() => GoToUpdate(context.Item.Id))"
+                            StartIcon="@Icons.Material.Filled.Edit"
+                            Color="Color.Success" />
+
+                    <MudFab Size="Size.Small"
+                            Label="Excluir"
+                            hidden="@HideButtons"
+                            @onclick="@(() => DeleteCostumer(context.Item))"
+                            StartIcon="@Icons.Material.Filled.Delete"
+                            Color="Color.Error" />
+                </MudStack>
+            </CellTemplate>
+        </TemplateColumn>
+    </Columns>
+</MudDataGrid>
+
+

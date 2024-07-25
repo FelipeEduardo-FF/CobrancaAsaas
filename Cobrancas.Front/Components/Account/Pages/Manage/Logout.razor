@@ -1,0 +1,14 @@
+﻿@page "/Account/Manage/logout"
+@using Cobrancas.Infra.Persistence.Data
+@using Microsoft.AspNetCore.Identity
+@inject NavigationManager Navigation
+@inject SignInManager<ApplicationUser> SignInManager
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await SignInManager.SignOutAsync();
+        Navigation.NavigateTo("/");
+    }
+
+}

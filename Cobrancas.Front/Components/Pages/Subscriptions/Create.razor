@@ -1,0 +1,51 @@
+﻿@page "/subscriptions/create"
+@using Cobrancas.Domain.Enum
+@using Microsoft.AspNetCore.Authorization
+@inherits CreateSubscriptionPage
+
+@attribute [Authorize(Roles = "Adm")]
+
+<MudText Typo="Typo.h3">Cadastro de assinatura</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <MudSelect Label="Tipo de Cobrança" Variant="Variant.Outlined" @bind-Value="InputModel.BillingType">
+            @foreach (BillingTypeEnum type in Enum.GetValues(typeof(BillingTypeEnum)))
+            {
+                <MudSelectItem Value="type">@type</MudSelectItem>
+            }
+        </MudSelect>
+        <MudSelect Label="Customer"
+                   @bind-Value="InputModel.CostumerId"
+                   Variant="Variant.Outlined"
+                   AnchorOrigin="Origin.BottomCenter"
+                   For="@(()=> InputModel.CostumerId)">
+            @if (Customers is not null)
+            {
+                @foreach (var costumer in Customers)
+                {
+                    <MudSelectItem Value="@costumer.Id">@costumer.Name</MudSelectItem>
+                }
+            }
+
+        </MudSelect>
+
+        <MudDatePicker Label="Data de Nascimento"
+                       Editable="false"
+                       @bind-Date="InputModel.FirstPayment"
+                       For="@(()=>InputModel.FirstPayment)"
+                       Variant="Variant.Outlined"
+                       Placeholder="Data da primeira parcela" />
+
+        <MudTextField Label="Valor" Variant="Variant.Outlined" HelperText="Campo obrigatório" @bind-Value="InputModel.Amount" For="@(() => InputModel.Amount)">
+        </MudTextField>
+
+
+        <MudDivider Class="my-4"></MudDivider>
+
+        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" Size="Size.Large" ButtonType="ButtonType.Submit">Salvar</MudButton>
+    </EditForm>
+</MudPaper>

@@ -1,0 +1,6 @@
+@Cobrancas.API_HostAddress = http://localhost:5038
+
+GET {{Cobrancas.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

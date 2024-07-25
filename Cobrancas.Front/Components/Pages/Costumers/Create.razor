@@ -1,0 +1,49 @@
+﻿@page "/costumers/create"
+@using Microsoft.AspNetCore.Authorization
+@inherits CostumerCreatePage
+
+@attribute [Authorize(Roles = "Adm")]
+
+<MudText Typo="Typo.h3">Cadastro de pacientes</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <MudTextField Label="Nome"
+                      Variant="Variant.Outlined"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Name"
+                      For="@(() => InputModel.Name)">
+        </MudTextField>
+
+        <MudTextField Label="Documento"
+                      Variant="Variant.Outlined"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Document"
+                      Mask="@(new PatternMask("000.000.000-00"))"
+                      For="@(() => InputModel.Document)">
+        </MudTextField>
+
+        <MudTextField Label="Email"
+                      Variant="Variant.Outlined"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Email"
+                      For="@(() => InputModel.Email)">
+        </MudTextField>
+
+        <MudTextField Label="Celular"
+                      Variant="Variant.Outlined"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.PhoneNumber"
+                      Mask="@(new PatternMask("(00) 0 0000-0000"))"
+                      For="@(() => InputModel.PhoneNumber)">
+        </MudTextField>
+
+
+        <MudDivider Class="my-4"></MudDivider>
+
+        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" Size="Size.Large" ButtonType="ButtonType.Submit">Salvar</MudButton>
+    </EditForm>
+</MudPaper>

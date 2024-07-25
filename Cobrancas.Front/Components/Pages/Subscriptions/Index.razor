@@ -1,0 +1,31 @@
+﻿@page "/subscriptions"
+@using Microsoft.AspNetCore.Authorization
+@inherits IndexSubscriptionPage
+
+@attribute [Authorize(Roles = "Cliente,Adm")]
+<MudText Typo="Typo.h3">Assinaturas</MudText>
+
+<MudButton Variant="Variant.Filled"
+           StartIcon="@Icons.Material.Filled.Add"
+           Color="Color.Info"
+           Size="Size.Large"
+           Href="/subscriptions/create"
+           Class="mt-md-4 mb-4">Nova Assinatura</MudButton>
+
+<MudTable Items="@ListSubscriptions" Filterable="false" SortMode="@SortMode.Single" Groupable="false">
+    <HeaderContent>
+        <MudTh>Tipo de Cobrança</MudTh>
+        <MudTh>Status</MudTh>
+        <MudTh>Valor</MudTh>
+        <MudTh>Primeiro Pagamento</MudTh>
+        <MudTh>Nome do Cliente</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Tipo de Cobrança">@context.BillingType</MudTd>
+        <MudTd DataLabel="Status">@context.Status</MudTd>
+        <MudTd DataLabel="Valor">@context.Amount</MudTd>
+        <MudTd DataLabel="Primeiro Pagamento">@context.FirstPayment.ToString("dd/MM/yyyy")</MudTd>
+        <MudTd DataLabel="Nome do Cliente">@context.Customer.Name</MudTd>
+
+    </RowTemplate>
+</MudTable>
